@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ar.com.hotel.entities">
+	<class table="COMMENT" name="Comment">
+		<id name="id" type="int" unsaved-value="0" column="comment_id">
+			<generator class="native"/>
+		</id>
+		<property name="description" type="string" column="name" length="255"/>
+		<property name="date" type="date" column="date"/>
+		<property name="user" type="string" column="user" length="50"/>
+	    <property name="vote" column="vote">
+	        <type name="org.hibernate.type.EnumType">
+	            <param name="enumClass">ar.com.hotel.entities.Vote</param>
+	            <param name="useNamed">true</param>	<!-- STRING -->
+	        </type>       
+	    </property>
+	</class>
+</hibernate-mapping>

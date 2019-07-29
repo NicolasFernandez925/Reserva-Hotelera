@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ar.com.hotel.entities">
+ 	<typedef name="BenefitType" class="org.hibernate.type.EnumType">
+		<param name="enumClass">ar.com.hotel.entities.Benefit</param>
+		<param name="type">12</param>
+	</typedef>
+	<class table="CATEGORY" name="Category">
+		<id name="id" type="int" unsaved-value="0" column="category_id">
+			<generator class="native"/>
+		</id>
+		<discriminator column="category_type" type="string"/>
+		<list name="benefits" table="category_benefit" fetch="join" lazy="false">
+           <key column="category_id"/>
+           <index column="id"/>
+           <element column="benefit" type="BenefitType"/>
+     	</list>
+     	
+	    <subclass name="NonPopular" discriminator-value="NONPOPULAR">
+	    </subclass>
+	    <subclass name="Neutral" discriminator-value="NEUTRAL">
+	    </subclass>
+	    <subclass name="Popular" discriminator-value="POPULAR">
+	    </subclass>
+	</class>
+</hibernate-mapping>

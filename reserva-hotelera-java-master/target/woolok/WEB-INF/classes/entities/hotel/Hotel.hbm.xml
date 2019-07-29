@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ar.com.hotel.entities">
+	<class table="HOTEL" name="Hotel">
+		<id name="id" type="int" unsaved-value="0" column="hotel_id">
+			<generator class="native"/>
+		</id>
+		<property name="name" type="string" column="name" length="50"/>
+		<property name="stars" type="int" column="stars"/>
+		<property name="price" type="float" column="price"/>
+		<property name="description" type="string" column="description" length="255"/>
+		<property name="location" type="string" column="location" length="255"/>
+		<property name="reserved" type="boolean" column="reserved"/>
+		<list name="comments" table="hotel_comment" fetch="join" lazy="false">
+           <key column="hotel_id"/>
+           <index column="id"/>
+           <one-to-many class="Comment"/>
+     	</list>
+     	<many-to-one name="category" column="category_id" class="Category" lazy="false" fetch="join"/>
+     	<!-- <many-to-one name="category" column="category_id" class="Category" not-null="true"/> -->
+	</class>
+</hibernate-mapping>

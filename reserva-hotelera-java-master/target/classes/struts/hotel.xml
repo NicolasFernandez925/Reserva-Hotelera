@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="hotel" namespace="/pages" extends="default, tiles-default">
+		<interceptors>
+			<interceptor-stack name="hotelDefaultStack">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<param name="validation.includeMethods">save,update</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="hotelDefaultStack" />
+
+		<action name="HotelAction!*" method="{1}" class="ar.com.hotel.action.HotelAction">
+			<result name="success" type="tiles">welcome</result>
+			<result name="list" type="tiles">search</result>
+			<result name="detail" type="tiles">detail</result>
+		</action>
+
+		<action name="WelcomeAction!*" method="{1}" class="ar.com.hotel.action.WelcomeAction">
+			<result name="welcome" type="tiles">welcome</result>
+		</action>
+	</package>
+</struts>

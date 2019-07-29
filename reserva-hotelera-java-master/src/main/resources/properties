@@ -1,0 +1,7 @@
+database.user=root
+database.pass=root
+database.name=woolok
+database.host=localhost
+database.port=3306
+hibernate.hbm2ddl.auto=create
+workspace=C:/workspace/woolok
